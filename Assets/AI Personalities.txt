@@ -1,0 +1,4 @@
+Blue- Follows waypoints
+Orange- Uses hearing/seeing to find/chase the player
+Pink- Chases the player while avoiding obstacles
+Green- Flees from the player while avoiding obstacles
