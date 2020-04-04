@@ -18,6 +18,7 @@ public class MoveCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Moves the camera up, down, left, or right a single room depending on where the player is
         if (playertf.position.z > tf.position.z + 25)
         {
             tf.position += new Vector3(0,0,50);

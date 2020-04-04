@@ -9,10 +9,13 @@ public class Cannonball : MonoBehaviour
     private Rigidbody rb;
 
     public int pointValue = 10;
+
+    public AudioSource audio;
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-       
+        audio = GameObject.Find("Hit").GetComponent<AudioSource>();
+        audio.volume = 1;
     }
     //Adds force to bullet
     public void ApplyForce(float force)
@@ -27,16 +30,18 @@ public class Cannonball : MonoBehaviour
         //If it's the player...
         if (other.gameObject.tag == "Player")
         {
+            audio.Play();
             //Player takes damage
             other.gameObject.GetComponent<TankData>().TakeDamage(damage);
             //Enemy earns points
-            GameObject.Find("Enemy").GetComponent<TankData>().Score(pointValue);
+            //GameObject.FindWithTag("Enemy").GetComponent<TankData>().Score(pointValue);
             //Destroy this bullet
             Destroy(this.gameObject);
         }
         //If it's the enemy...
         if (other.gameObject.tag == "Enemy")
         {
+            audio.Play();
             //Enemy takes damage
             other.gameObject.GetComponent<TankData>().TakeDamage(damage);
             //Player earns points

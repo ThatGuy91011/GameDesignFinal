@@ -8,7 +8,7 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     //Allows the inspector to change the control scheme of the game
-    public enum InputScheme { WASD, arrowKeys };
+    public enum InputScheme { WASD, arrowKeys, arrowKeys2P, Nothing };
     public InputScheme input = InputScheme.WASD;
 
 
@@ -76,22 +76,67 @@ public class InputController : MonoBehaviour
                         motor.Rotate(-data.rotateSpeed);
                     }
                     break;
-            }
+
+            case InputScheme.arrowKeys2P:
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    motor.Move(data.moveSpeed);
+                }
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    motor.Move(-data.moveSpeed);
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    motor.Rotate(data.rotateSpeed);
+                }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    motor.Rotate(-data.rotateSpeed);
+                }
+                break;
+        }
         
         
     
         //If the tank is able to shoot...
         if (canShoot)
         {
-            //If the player presses space...
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (input == InputScheme.WASD)
             {
-                //Shooting
-                shooter.Shoot();
-                //Cooldown time
-                canShoot = false;
-                timeUntilCanShoot = data.fireRate;
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    //Shooting
+                    shooter.Shoot();
+                    //Cooldown time
+                    canShoot = false;
+                    timeUntilCanShoot = data.fireRate;
+                }
             }
+            else if (input == InputScheme.arrowKeys2P)
+            {
+                if (Input.GetKeyDown(KeyCode.RightShift))
+                {
+                    //Shooting
+                    shooter.Shoot();
+                    //Cooldown time
+                    canShoot = false;
+                    timeUntilCanShoot = data.fireRate;
+                }
+            }
+            else
+            {
+                //If the player presses space...
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    //Shooting
+                    shooter.Shoot();
+                    //Cooldown time
+                    canShoot = false;
+                    timeUntilCanShoot = data.fireRate;
+                }
+            }
+            
         }
 
         //Cooldown

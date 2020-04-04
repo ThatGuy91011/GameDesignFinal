@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(TankData))]
 public class SimpleAIController4 : MonoBehaviour
@@ -40,7 +41,7 @@ public class SimpleAIController4 : MonoBehaviour
     public Transform target;
     public float fleeDistance = 1.0f;
 
-
+    public float volume;
 
     public enum AvoidanceStage { None, Rotate, Move };
     public AvoidanceStage avoidanceStage;
@@ -53,6 +54,8 @@ public class SimpleAIController4 : MonoBehaviour
         data = GetComponent<TankData>();
         motor = GetComponent<TankMotor>();
         player = GameObject.FindWithTag("Player");
+
+        GetComponent<AudioSource>().volume = .5f;
     }
 
     // Update is called once per frame

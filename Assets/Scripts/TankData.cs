@@ -23,10 +23,12 @@ public class TankData : MonoBehaviour
 
     public int playerNumber = 1;
 
+    public AudioSource audio;
     void Start()
     {
         //Each tank's health starts out at the maximum
         health = maxHealth;
+        audio = GameObject.Find("Death").GetComponent<AudioSource>();
     }
 
     //If a tank takes damage...
@@ -44,9 +46,19 @@ public class TankData : MonoBehaviour
 
     //Function for tank death
     public void Die()
-    { 
-       
-        Destroy(this.gameObject);
+    {
+        audio.Play();
+        if (this.gameObject.tag == "Player")
+        {
+            GameManager.instance.score = score;
+            if (score > PlayerPrefs.GetInt("HighScore", 0))
+            {
+                PlayerPrefs.SetInt("HighScore", score);
+            }
+            GameManager.instance.GameOver();
+        }
+        GetComponent<InputController>().input = InputController.InputScheme.Nothing;
+       Destroy(this.gameObject);
     }
 
     //Function for tank score

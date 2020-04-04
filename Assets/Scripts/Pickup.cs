@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     public PowerUp powerup;
-    public int RespawnTime;
+    public int RespawnTime = 5;
 
     public AudioClip FeedbackAudioClip;
 

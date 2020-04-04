@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class MapGenerator : MonoBehaviour
@@ -27,6 +28,8 @@ public class MapGenerator : MonoBehaviour
     public GameObject[] gridPrefabs;
 
     public Room[,] grid;
+
+    public Dropdown mapChoice;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,12 +48,21 @@ public class MapGenerator : MonoBehaviour
                 Debug.LogError("[MapGenerator] Type not Implemented");
                 break;
         }
-        GenerateGrid();
-        //Creates the player and enemies in the map
-        GameManager.instance.SpawnPlayer(GameManager.instance.RandomSpawn(GameManager.instance.playerSpawnPoints));
-        GameManager.instance.SpawnEnemies();
     }
+    public void MapChoice(int mapChoice)
+    {
+        //mapChoice = GameObject.Find("Map Choice").GetComponent<Dropdown>();
 
+        if (mapChoice == 0)
+        {
+            mapType = MapType.MapOfTheDay;
+        }
+        else if (mapChoice == 1)
+        {
+            mapType = MapType.Random;
+        }
+        GenerateGrid();
+    }
     //Returns a random room
     public GameObject RandomRoom()
     {
@@ -68,6 +80,7 @@ public class MapGenerator : MonoBehaviour
     //Creates the map
     public void GenerateGrid()
     {
+
         //Use a seed as determined by the drop down menu
         UnityEngine.Random.seed = mapSeed;
         //Creates an empty grid using the designer's instructions
