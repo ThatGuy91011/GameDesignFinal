@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(TankData))]
+/**[RequireComponent(typeof(TankData))]
 [RequireComponent(typeof(TankMotor))]
-[RequireComponent(typeof(TankShooter))]
+[RequireComponent(typeof(TankShooter))]**/
 public class InputController : MonoBehaviour
 {
     //Allows the inspector to change the control scheme of the game

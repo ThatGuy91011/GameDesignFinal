@@ -5,7 +5,7 @@ using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(TankData))]
+//[RequireComponent(typeof(TankData))]
 public class SimpleAIController4 : MonoBehaviour
 {
     private Transform tf;
@@ -131,10 +131,10 @@ public class SimpleAIController4 : MonoBehaviour
     //Waypoints
     private void Waypoint()
     {
-        waypoints[0] = GameObject.Find("Waypoint (1)").transform;
-        waypoints[1] = GameObject.Find("Waypoint (2)").transform;
-        waypoints[2] = GameObject.Find("Waypoint (3)").transform;
-        waypoints[3] = GameObject.Find("Waypoint").transform;
+        waypoints[1] = GameObject.Find("Waypoint (1)").transform;
+        waypoints[2] = GameObject.Find("Waypoint (2)").transform;
+        waypoints[3] = GameObject.Find("Waypoint (3)").transform;
+        waypoints[4] = GameObject.Find("Waypoint").transform;
         //If the AI is already rotated towards the next waypoint...
         if (motor.RotateTowards(waypoints[currentWaypoint].position, data.rotateSpeed))
         {

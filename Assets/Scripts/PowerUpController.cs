@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
 
-[RequireComponent(typeof(TankData))]
+//[RequireComponent(typeof(TankData))]
 public class PowerUpController : MonoBehaviour
 {
     public List<PowerUp> powerups;

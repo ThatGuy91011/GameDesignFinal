@@ -27,7 +27,11 @@ public class GameManager : MonoBehaviour
     public int score;
     public Text highScore;
     public GameObject gameOver;
+    public GameObject gameOver1;
+    public GameObject gameOver2;
     public GameObject finalScore;
+
+    public Canvas UIMenu;
     // Runs before any Start() functions run
     void Awake()
     {
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
         instantiatedPlayerTank = Instantiate(playerTankPrefab, spawnpoint.transform.position, Quaternion.identity);
         SpawnCamera(spawnpoint);
         BackgroundMusic(spawnpoint);
+        Destroy(UIMenu);
     }
 
     public void SpawnCamera(GameObject spawnpoint)
@@ -94,9 +99,19 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        gameOver.SetActive(true);
+        if (GameObject.FindWithTag("Player").GetComponent<TankData>().playerNumber == 1)
+        {
+            gameOver1.SetActive(true);
+        }
+        if (GameObject.FindWithTag("Player").GetComponent<TankData>().playerNumber == 2)
+        {
+            gameOver2.SetActive(true);
+        }
+        else
+        {
+            gameOver.SetActive(true);
+        }
         finalScore.GetComponent<Text>().text = "Final Score: " + score;
         highScore.GetComponent<Text>().text = "High Score: " + PlayerPrefs.GetInt("HighScore");
-
     }
 }

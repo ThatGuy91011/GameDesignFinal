@@ -40,14 +40,17 @@ public class UIManager : MonoBehaviour
 
         //Starts the game and hides all of the menus
         playerSelect.SetActive(false);
-        mainmenu.SetActive(false);
-        mainmenu.SetActive(false);
-        mainmenu.SetActive(false);
 
         //Destroys unneeded objects
         Destroy(GameObject.Find("Menu Music"));
         Destroy(GameObject.Find("Initial Camera"));
         Destroy(GameObject.Find("Camera"));
+
+    }
+
+public void quitGame()
+    {
+        Application.Quit();
     }
 
     public void OptionsMenu()

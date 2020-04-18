@@ -49,6 +49,27 @@ public class Cannonball : MonoBehaviour
             //Destroy this bullet
             Destroy(this.gameObject);
         }
+        if (other.gameObject.name == "Player 1")
+        {
+            audio.Play();
+            //Enemy takes damage
+            other.gameObject.GetComponent<TankData>().TakeDamage(damage);
+            //Player earns points
+            GameObject.Find("Player 2").GetComponent<TankData>().Score(pointValue);
+            //Destroy this bullet
+            Destroy(this.gameObject);
+        }
+        if (other.gameObject.name == "Player 2")
+        {
+            audio.Play();
+            //Enemy takes damage
+            other.gameObject.GetComponent<TankData>().TakeDamage(damage);
+            //Player earns points
+            Debug.Log("Hit Player 2");
+            GameObject.Find("Player 1").GetComponent<TankData>().Score(pointValue);
+            //Destroy this bullet
+            Destroy(this.gameObject);
+        }
         //If it's a wall...
         if (other.gameObject.tag == "Wall")
         {

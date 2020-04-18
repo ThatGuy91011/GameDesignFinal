@@ -21,7 +21,7 @@ public class TankData : MonoBehaviour
 
     public int score = 0;
 
-    public int playerNumber = 1;
+    public int playerNumber = 0;
 
     public AudioSource audio;
     void Start()
@@ -56,9 +56,11 @@ public class TankData : MonoBehaviour
                 PlayerPrefs.SetInt("HighScore", score);
             }
             GameManager.instance.GameOver();
+            
         }
+        Destroy(this.gameObject);
         GetComponent<InputController>().input = InputController.InputScheme.Nothing;
-       Destroy(this.gameObject);
+
     }
 
     //Function for tank score
